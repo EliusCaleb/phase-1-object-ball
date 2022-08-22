@@ -122,40 +122,39 @@
       
       
  
-  function numPointscored(playersName){
-    const game = gameObjec()
-     for(let gameKey in game){
-         const teamObj = game[gameKey]
-         const playerObj = teamObj.players
-        debugger
-         for( const playerKey in playerObj){
-          debugger
-          if (playerKey===playersName){
-            return  playerObj[playerKey].points
-            
-          }
-         }
-     }
 
 
-  }
-  debugger
 
 
-  function shoeSize(playersName){
-    for(let gameKey in game) {
-      const teamObj = game[gameKey]
-         const playerObj = teamObj.players
-         debugger
-         for(const playerKey in playerObj){
-          debugger
-          if (playerKey===playersName){
-            return playerObj[playerKey].shoe
-            debugger
-          }
-         }
+  function homeTeamName() {
+    let object = gameObject()
+    return object['home']['teamName']
+}
 
+
+function numPointsScored(playername) {
+    const obj = gameObject();
+    const allPlayers = { ...obj.home.players, ...obj.away.players }
+    return allPlayers[playername].points
+}
+console.log(numPointsScored('Brendan Haywood'))
+
+function shoeSize(playername) {
+    const obj = gameObject();
+    const allPlayers = { ...obj.home.players, ...obj.away.players }
+    return allPlayers[playername].shoe
+}
+console.log(shoeSize('DeSagna Diop'))
+
+function teamColors(teamname) {
+    const obj = gameObject();
+    for (team in obj) {
+        const teamObj = obj[team]
+        for (const teamKey in teamObj) {
+            if (teamObj[teamKey] == teamname) {
+                return teamObj.colors
+            }
+        }
     }
-    
-    console.log(numPointscored('Ben Gordon'));
-  }
+}
+console.log(teamColors('Brooklyn Nets'));
